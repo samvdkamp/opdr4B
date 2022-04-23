@@ -16,7 +16,6 @@ public class AutoHuurTest {
 
     @Test
     void testKorting() {
-        double zonderKorting;
         double metKorting;
         Klant f = new Klant("Test Klant");
         Auto p = new Auto("test Auto", 50);
@@ -26,27 +25,19 @@ public class AutoHuurTest {
         p.setPrijsPerDag(50);
         aH.setGehuurdeAuto(p);
         metKorting = aH.totaalPrijs();
-        Klant g = new Klant("Zonder Korting");
-        aH.setHuurder(g);
-        zonderKorting = aH.totaalPrijs();
-        assertEquals(metKorting, zonderKorting / 2);
+        assertEquals(metKorting, 50);
     }
 
     @Test
     void stringKorting() {
-        AutoHuur verhuurTest = new AutoHuur();
         Klant f = new Klant("Test Klant");
         f.setKorting(50);
-        Klant g = new Klant("Zonder Korting");
         Auto p = new Auto("test Auto", 50);
         p.setPrijsPerDag(50);
         aH.setGehuurdeAuto(p);
-        verhuurTest.setGehuurdeAuto(p);
         aH.setAantalDagen(2);
-        verhuurTest.setAantalDagen(2);
         aH.setHuurder(f);
-        verhuurTest.setHuurder(g);
-        if (aH.toString().contains(String.valueOf(aH.totaalPrijs())) && verhuurTest.toString().contains(String.valueOf(verhuurTest.totaalPrijs()))) {
+        if (aH.toString().contains(String.valueOf(50))) {
             assertTrue(true);
         } else {
             assertEquals(1, 3);
