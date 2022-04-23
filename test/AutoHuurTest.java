@@ -15,8 +15,7 @@ public class AutoHuurTest {
     }
 
     @Test
-    void testKorting() {
-        double metKorting;
+    void testmetKorting() {
         Klant f = new Klant("Test Klant");
         Auto p = new Auto("test Auto", 50);
         aH.setAantalDagen(2);
@@ -24,12 +23,22 @@ public class AutoHuurTest {
         aH.setHuurder(f);
         p.setPrijsPerDag(50);
         aH.setGehuurdeAuto(p);
-        metKorting = aH.totaalPrijs();
-        assertEquals(metKorting, 50);
+        assertEquals(aH.totaalPrijs(), 50);
     }
 
     @Test
-    void stringKorting() {
+    void testZonderKorting() {
+        Klant f = new Klant("Test Klant");
+        Auto p = new Auto("test Auto", 50);
+        aH.setAantalDagen(2);
+        aH.setHuurder(f);
+        p.setPrijsPerDag(50);
+        aH.setGehuurdeAuto(p);
+        assertEquals(aH.totaalPrijs(), 100);
+    }
+
+    @Test
+    void stringmetKorting() {
         Klant f = new Klant("Test Klant");
         f.setKorting(50);
         Auto p = new Auto("test Auto", 50);
@@ -38,6 +47,21 @@ public class AutoHuurTest {
         aH.setAantalDagen(2);
         aH.setHuurder(f);
         if (aH.toString().contains(String.valueOf(50))) {
+            assertTrue(true);
+        } else {
+            assertEquals(1, 3);
+        }
+    }
+
+    @Test
+    void stringZonderKorting() {
+        Klant f = new Klant("Test Klant");
+        Auto p = new Auto("test Auto", 50);
+        p.setPrijsPerDag(50);
+        aH.setGehuurdeAuto(p);
+        aH.setAantalDagen(2);
+        aH.setHuurder(f);
+        if (aH.toString().contains(String.valueOf(100))) {
             assertTrue(true);
         } else {
             assertEquals(1, 3);
